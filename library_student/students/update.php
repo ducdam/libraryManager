@@ -1,7 +1,6 @@
 <?php
-include_once '../DBConnect.php';
-include_once '../Student.php';
-include_once '../DBStudent.php';
+include_once 'Student.php';
+include_once 'DBStudent.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ((!empty($_POST['name'])) && (!empty($_POST['phone'])) && (!empty($_POST['address']))) {

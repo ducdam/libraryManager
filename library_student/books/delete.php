@@ -7,8 +7,8 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
         $id = $_GET['id'];
         $book = new DBBook();
         $book->del($id);
+        header('location: list.php', true);
     }
-    header('location: list.php', true);
 }
 ?>
 

@@ -1,8 +1,6 @@
 <?php
-
-include_once '../DBConnect.php';
-include_once '../Book.php';
-include_once '../DBBook.php';
+include_once 'Book.php';
+include_once 'DBBook.php';
 
 if ($_SERVER['REQUEST_METHOD']=="POST") {
     if ((!empty($_POST['name']))&&(!empty($_POST['author']))&&(!empty($_POST['publish']))&&(!empty($_POST['publisher']))&&(!empty($_POST['categoryId']))) {

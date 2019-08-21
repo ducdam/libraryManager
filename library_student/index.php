@@ -9,36 +9,28 @@ if (isset($_SESSION['id'])) {
     }
 } else {
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
-        if (!empty($_POST["name"]) && !empty($_POST["pass"])) {
+        if (empty($_POST["name"]) && empty($_POST["pass"])) {
+            echo "Không được bỏ trống <br> ";
+        } else {
             $username = $_POST["name"];
             $password = $_POST["pass"];
             $Dbconnect = new DBconnect();
             $conn = $Dbconnect->connect();
-            $sql = "SELECT * FROM users WHERE `name`='$username'";
-            $stmt = $conn->prepare($sql);
-            $stmt->execute();
-            $resultUsername = $stmt->rowCount();
-        }else{
-            echo "Không được bỏ trống ";
-        }
-        if ($resultUsername != 0) {
             $sql = "SELECT * FROM users WHERE `name`='$username' and `pass`='$password'";
             $stmt = $conn->prepare($sql);
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $result = $stmt->fetch();
-            if ($result) {
+            if ($result == 0) {
+                echo 'Sai username || password';
+            } else {
                 $_SESSION['id'] = $result['id'];
                 if ($_SESSION['id'] == '1') {
                     header('location:home.php');
                 } else {
                     header('location:index.php');
                 }
-            } else {
-                echo 'sai mat khau';
             }
-        } else {
-            echo 'sai ten dang nhap';
         }
     }
 }

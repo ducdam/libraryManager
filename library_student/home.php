@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(isset($_SESSION['id'])){
+}else
+    header('location: index.php');
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -19,4 +25,3 @@
 </div>
 </body>
 </html>
-
